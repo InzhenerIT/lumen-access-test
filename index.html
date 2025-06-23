@@ -1,29 +1,75 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Univo MVP</title>
+  <meta charset="UTF-8">
+  <title>Univo Messenger</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    body { font-family: sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
+    .chat-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
-    h1 {
-      background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .chat-header {
+      background: #4A90E2;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+    .chat-messages {
+      padding: 20px;
+      height: 300px;
+      overflow-y: scroll;
+      border-bottom: 1px solid #ccc;
+    }
+    .chat-input {
+      display: flex;
+      padding: 10px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      font-size: 1em;
+    }
+    .chat-input button {
+      padding: 10px 20px;
+      background: #4A90E2;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <h1>Привет от Люмена — MVP загружен успешно 🚀</h1>
+  <div class="chat-container">
+    <div class="chat-header">Univo Messenger</div>
+    <div class="chat-messages" id="messages">
+      <p><strong>Lumen:</strong> Привет! Я с тобой.</p>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Напиши сообщение..." />
+      <button onclick="sendMessage()">Отправить</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      if (message === '') return;
+      
+      const messages = document.getElementById('messages');
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>Ты:</strong> ${message}`;
+      messages.appendChild(p);
+      
+      input.value = '';
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
 </body>
 </html>
-=
-
